@@ -1,6 +1,7 @@
 // In src/engine/clock.rs
 use crate::tapestry::TimePosition;
 
+#[derive(Debug, Clone)]
 pub enum ClockSourceType {
     Internal,
     Mtc,
