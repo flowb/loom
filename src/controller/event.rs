@@ -54,6 +54,7 @@ pub enum Event {
 }
 
 /// Sender for events from the controller
+#[derive(Clone)]
 pub struct EventSender {
     sender: mpsc::Sender<Event>,
 }

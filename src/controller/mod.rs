@@ -1,3 +1,8 @@
+pub mod event;
+pub mod command;
+pub mod snapshot;
+pub mod dispatcher;
+
 use std::sync::{Arc, RwLock};
 use std::thread;
 use std::time::Duration as StdDuration;

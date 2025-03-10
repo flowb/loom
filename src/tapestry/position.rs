@@ -1,5 +1,6 @@
 use std::cmp::Ordering;
 use std::ops::{Add, Sub, AddAssign, SubAssign};
+use crate::tapestry::Duration;
 
 /// Represents a precise position in time, independent of sample rate
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -63,6 +64,35 @@ impl Sub for TimePosition {
         Self {
             position_ticks: self.position_ticks.saturating_sub(other.position_ticks),
         }
+    }
+}
+
+impl Add<Duration> for TimePosition {
+    type Output = Self;
+
+    fn add(self, duration: Duration) -> Self {
+        Self {
+            position_ticks: self.position_ticks + duration.ticks(),
+        }
+    }
+}
+impl Sub<Duration> for TimePosition {
+    type Output = Self;
+
+    fn sub(self, duration: Duration) -> Self {
+        Self {
+            position_ticks: self.position_ticks.saturating_sub(duration.ticks()),
+        }
+    }
+}
+impl AddAssign<Duration> for TimePosition {
+    fn add_assign(&mut self, duration: Duration) {
+        self.position_ticks += duration.ticks();
+    }
+}
+impl SubAssign<Duration> for TimePosition {
+    fn sub_assign(&mut self, duration: Duration) {
+        self.position_ticks = self.position_ticks.saturating_sub(duration.ticks());
     }
 }
 

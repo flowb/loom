@@ -1,4 +1,5 @@
 use uuid::Uuid;
+use std::fmt;
 
 /// Unique identifier for an output endpoint
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -7,6 +8,12 @@ pub struct EndpointId(Uuid);
 impl EndpointId {
     pub fn new() -> Self {
         Self(Uuid::new_v4())
+    }
+}
+
+impl fmt::Display for EndpointId {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.0)
     }
 }
 
