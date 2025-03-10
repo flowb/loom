@@ -15,8 +15,8 @@ pub trait ClockSource {
 }
 
 pub struct InternalClock {
-    start_time: Option<std::time::Instant>,
-    sample_rate: u32,
+    pub start_time: Option<std::time::Instant>,
+    pub sample_rate: u32,
     // Other internal clock state
 }
 
